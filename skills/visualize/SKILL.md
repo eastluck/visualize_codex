@@ -8,12 +8,6 @@ description: >
   humans digest information faster. Trigger on requests like "visualize this," "make a deck,"
   "create a slide," "build an infographic," "show me a dashboard," "make this visual,"
   or any request to present information in a visual HTML format.
-license: MIT
-metadata:
-  author: careerhackeralex
-  version: 0.3.0
-  category: document-creation
-  tags: [visualization, html, slides, dashboard, infographic]
 ---
 
 # Visualize
@@ -22,16 +16,10 @@ Turn any idea, data, or content into a stunning single-file HTML visualization.
 
 ## After Creating a File
 
-**Always do BOTH of these after writing the HTML file:**
-
-1. **Auto-open in browser:** Run `open <filename>.html` (macOS) or `xdg-open <filename>.html` (Linux) so the user sees it immediately
-2. **Return the file path as a clickable URL:** Include `file://<absolute-path>` in your response so the user can click to open it
-
-Example response after creation:
-```
-Created your visualization! Opening in browser now...
-📄 file:///Users/you/project/my-dashboard.html
-```
+1. Save the HTML in the current workspace or at the user-specified path.
+2. Validate the generated file in proportion to the task. Inspect it in a browser or capture a screenshot when browser tooling is available and useful.
+3. Do not launch a GUI application unless the user requests it or approves the action.
+4. Return a clickable Markdown link to the absolute local path, for example `[Open dashboard](/absolute/path/my-dashboard.html)`.
 
 ## Critical Requirements (NON-NEGOTIABLE)
 
@@ -147,13 +135,13 @@ This provides true component-level responsiveness beyond viewport media queries.
 
 HTML is not a "website" — it's a visualization tool. Code is cheap. Everyone should feel empowered to visualize anything. This skill turns conversation context, URLs, articles, data, or raw ideas into something visual and digestible in seconds.
 
-Users invoke this **mid-conversation** with Claude Code. Use the full conversation context — whatever they've been discussing, any links they've shared, any data they've pasted — as source material. When given a URL, crawl it and extract the content to visualize.
+Users can invoke this skill mid-conversation. Use the full conversation context—discussion, links, and pasted data—as source material. When given a URL, use available browsing tools to extract the content before visualizing it.
 
 ## Output Rules
 
 **MANDATORY FIRST STEP: Copy the complete skeleton from [references/skeleton.md](references/skeleton.md) — this includes all required elements (menu, theme system, CSS properties, semantic HTML, accessibility features). Never write HTML from scratch.**
 
-- Write ONE `.html` file to `~/Downloads/` (or user-specified path)
+- Write ONE `.html` file in the current workspace (or user-specified writable path)
 - Filename: descriptive kebab-case, e.g., `q4-revenue-dashboard.html`, `team-roadmap-deck.html`
 - Start with skeleton.md template, add your content to the `<!-- YOUR CONTENT HERE -->` section
 - All custom styles in `<style>` after the skeleton's base styles

@@ -2,7 +2,7 @@
 
 **Turn any idea into a beautiful HTML visualization — with one prompt.**
 
-A [Claude Code](https://code.claude.com) plugin that creates stunning, self-contained HTML visualizations from natural language. Slide decks, dashboards, infographics, flowcharts, timelines, and more — all as single HTML files you can open anywhere.
+A Codex skill that creates polished, self-contained HTML visualizations from natural language. Slide decks, dashboards, infographics, flowcharts, timelines, and more — all as single HTML files you can open anywhere.
 
 > HTML is not a "website." It's a visualization tool. Code is cheap. Everyone should feel empowered to visualize anything.
 
@@ -73,35 +73,28 @@ Every visualization includes:
 
 ## Installation
 
-### Claude Code Plugin (recommended)
+### Codex skill
 
 ```bash
-# Step 1: Add the marketplace (one-time)
-claude plugin marketplace add careerhackeralex/visualize
-
-# Step 2: Install the plugin
-claude plugin install visualize@careerhackeralex
-```
-
-To update later:
-```bash
-claude plugin update visualize@careerhackeralex
+# Copy or clone the distributable skill into your Codex skills directory
+mkdir -p ~/.codex/skills
+git clone https://github.com/eastluck/visualize_codex.git
+cp -R visualize/skills/visualize ~/.codex/skills/visualize
 ```
 
 ### Manual Installation
 
 ```bash
 # Clone the repo
-git clone https://github.com/careerhackeralex/visualize.git
+git clone https://github.com/eastluck/visualize_codex.git
 
-# Claude Code auto-discovers plugins with .claude-plugin/plugin.json
-# Just open Claude Code in the cloned directory, or add it as a plugin dir:
-claude plugin install --plugin-dir /path/to/visualize
+# Link the skill during local development so edits take effect immediately
+ln -s /path/to/visualize/skills/visualize ~/.codex/skills/visualize
 ```
 
 ## Usage
 
-Once installed, just ask Claude Code to visualize anything:
+Once installed, invoke `$visualize` explicitly or ask Codex to visualize anything:
 
 ```
 "Create a presentation about our Q4 results"
@@ -121,16 +114,15 @@ See the [`examples/`](examples/) directory for sample outputs.
 
 ```
 visualize/
-├── .claude-plugin/
-│   └── plugin.json             # Plugin manifest
 ├── skills/
 │   └── visualize/
-│       ├── SKILL.md            # Core skill instructions
+│       ├── SKILL.md            # Core Codex skill instructions
+│       ├── agents/openai.yaml  # Codex UI metadata
 │       └── references/         # Design system, skeleton, patterns
 ├── examples/                   # 15 sample HTML outputs
 ├── eval/                       # Quality assurance & eval loop
 ├── research/                   # Design research notes
-├── CLAUDE.md                   # Claude Code context file
+├── AGENTS.md                   # Codex repository instructions
 ├── README.md                   # This file
 └── LICENSE                     # MIT
 ```
@@ -138,7 +130,7 @@ visualize/
 ## How It Works
 
 1. You describe what you want to visualize
-2. Claude Code reads the skill instructions (design system, patterns, best practices)
+2. Codex reads the skill instructions (design system, patterns, best practices)
 3. It generates a single `.html` file with inline CSS/JS
 4. Open in any browser — done
 

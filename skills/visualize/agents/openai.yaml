@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visualize"
+  short_description: "Create polished, self-contained HTML visualizations"
+  default_prompt: "Use $visualize to turn this content into a polished, self-contained HTML visualization."
