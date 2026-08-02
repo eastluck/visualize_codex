@@ -79,7 +79,7 @@ Every visualization includes:
 # Copy or clone the distributable skill into your Codex skills directory
 mkdir -p ~/.codex/skills
 git clone https://github.com/eastluck/visualize_codex.git
-cp -R visualize/skills/visualize ~/.codex/skills/visualize
+cp -R visualize_codex/skills/visualize ~/.codex/skills/visualize
 ```
 
 ### Manual Installation
